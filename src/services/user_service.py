@@ -23,5 +23,4 @@ async def authenticate(user_data: UserSchema, session: AsyncSession) -> UserSche
         raise e
 
 
-async def get_user_progress(user_id: int, session: AsyncSession):
-    pass
+async def get_user_progress(user_id: int, session: AsyncSession): ...
