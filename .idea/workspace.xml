@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/EnglishBot.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/migrations/README" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/migrations/env.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/migrations/script.py.mako" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/migrations/versions/4af1fa1ad7a9_added_users_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/models/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/models/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/session.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schema/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schema/user.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/exercise_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/gigachat_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/user_service.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/settings/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/settings/logging.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/settings/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/bot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/handlers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/handlers/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/handlers/task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/handlers/user.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2uDmdcYh5vu9d08c21JfPUlLH8Y" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker-compose.yaml.postgres: Compose Deployment.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable"
+  }
+}]]></component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="EnglishBot" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envFilePath" value="" />
+          <option name="services">
+            <list>
+              <option value="postgres" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Docker.docker-compose.yaml.postgres: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-495700d161d3-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.220" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="" />
+      <created>1741791608241</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1741791608241</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+</project>
