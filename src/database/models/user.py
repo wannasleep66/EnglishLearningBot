@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
 
@@ -9,3 +9,4 @@ class User(Base):
     username: Mapped[str]
     first_name: Mapped[str]
     last_name: Mapped[str]
+    answers: Mapped["Answer"] = relationship(back_populates="user")

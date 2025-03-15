@@ -1,12 +1,13 @@
-from aiogram import Router
+from aiogram import Router, F
 from aiogram.filters import CommandStart
 from aiogram.types import Message
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.session import transaction
-from schema.user import UserSchema
+from schemas.user import UserSchema
 from src.services import user_service
-
+from telegram.common import KeyboardCommands
+from telegram.user.keyboards import main_keyboard
 
 user_router = Router()
 
@@ -23,4 +24,10 @@ async def start_command(message: Message, session: AsyncSession):
         ),
         session,
     )
-    await message.answer(f"Привет {user.username}")
+    await message.answer(f"Привет {user.username}", reply_markup=main_keyboard())
+
+
+@user_router.message(F.text == KeyboardCommands.profile)
+@transaction
+async def show_profile(message: Message, session: AsyncSession):
+    await message.answer("Тут будет твой профиль работяга")

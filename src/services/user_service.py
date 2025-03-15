@@ -3,7 +3,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.models import User
-from schema.user import UserSchema
+from schemas.user import UserSchema
 
 
 async def authenticate(user_data: UserSchema, session: AsyncSession) -> UserSchema:

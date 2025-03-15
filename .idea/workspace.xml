@@ -4,11 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="init project">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="deleted env file from git">
+      <change afterPath="$PROJECT_DIR$/src/schemas/task.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/topic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/common.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/tasks/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/tasks/handler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/tasks/keyboards.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/tasks/state.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/user/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/user/keyboards.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/user/state.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/migrations/versions/4af1fa1ad7a9_added_users_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/migrations/versions/4af1fa1ad7a9_added_users_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/models/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schema/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/answer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schema/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/user.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/user_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/handlers/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/handlers/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/topic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/handlers/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/handlers/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/user/handler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,9 +45,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;wannasleep66&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/wannasleep66/EnglishLearningBot.git&quot;,
+    &quot;accountId&quot;: &quot;20d332db-b6c0-44ad-9757-1dd986c5e63e&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2uDmdcYh5vu9d08c21JfPUlLH8Y" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -43,10 +74,18 @@
     "Docker.docker-compose.yaml.postgres: Compose Deployment.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/Projects/EnglishBot/src/telegram/tasks",
     "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\EnglishBot\src\telegram\user" />
+      <recent name="D:\Projects\EnglishBot\src\telegram\tasks" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EnglishBot" />
@@ -71,7 +110,9 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="docker-compose.yaml.postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -119,14 +160,42 @@
       <option name="project" value="LOCAL" />
       <updated>1741811337908</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="init project">
+      <option name="closed" value="true" />
+      <created>1741811552726</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741811552726</updated>
+    </task>
+    <task id="LOCAL-00003" summary="deleted env file from git">
+      <option name="closed" value="true" />
+      <created>1741811978440</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741811978440</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init project" />
-    <option name="LAST_COMMIT_MESSAGE" value="init project" />
+    <MESSAGE value="deleted env file from git" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted env file from git" />
   </component>
 </project>

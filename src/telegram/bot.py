@@ -1,12 +1,18 @@
 from aiogram import Bot, Dispatcher
+from aiogram.client.default import DefaultBotProperties
 from aiogram.fsm.storage.memory import MemoryStorage
 
 from src.settings.settings import settings
-from telegram.handlers import composer
+from .tasks.handler import tasks_router
+from .user.handler import user_router
 
-bot = Bot(token=settings.telegram.bot_token, parse_mode="HTML")
+bot = Bot(
+    token=settings.telegram.bot_token,
+    default=DefaultBotProperties(parse_mode="HTML"),
+)
 dp = Dispatcher(storage=MemoryStorage())
-dp.include_router(composer)
+dp.include_router(user_router)
+dp.include_router(tasks_router)
 
 
 async def bootstrap() -> None:
