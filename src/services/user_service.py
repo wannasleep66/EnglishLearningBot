@@ -1,7 +1,11 @@
+from datetime import datetime
+
+from asyncpg.pgproto.pgproto import timedelta
 from sqlalchemy import select, func, case, desc, and_
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from settings.settings import settings
 from database.models import User, Answer, Topic
 from schemas.topic import TopicSchema
 from schemas.user import UserSchema, UserProgressSchema, UserTopicProgressSchema
@@ -22,6 +26,30 @@ async def authenticate(user_data: UserSchema, session: AsyncSession) -> UserSche
     except SQLAlchemyError as e:
         await session.rollback()
         raise e
+
+
+async def get_inactive_users(session: AsyncSession) -> list[UserSchema]:
+    query = select(User).filter(
+        User.last_activity
+        < datetime.now()
+        - timedelta(minutes=settings.notifications.notify_after_minutes)
+    )
+    inactive_users = await session.scalars(query)
+    return list(UserSchema.model_validate(user) for user in inactive_users)
+
+
+async def update_user_activity(user_id: int, session: AsyncSession) -> None:
+    query = select(User).filter(User.id == user_id)
+    user_to_update = await session.scalar(query)
+    if user_to_update:
+        user_to_update.last_activity = datetime.now()
+
+    try:
+        await session.commit()
+        await session.refresh(user_to_update)
+    except SQLAlchemyError:
+        await session.rollback()
+        raise
 
 
 async def get_user_progress(user_id: int, session: AsyncSession):

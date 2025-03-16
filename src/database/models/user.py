@@ -12,7 +12,7 @@ class User(Base):
     username: Mapped[str]
     first_name: Mapped[str]
     last_name: Mapped[str]
-    last_activity: Mapped[str] = mapped_column(
+    last_activity: Mapped[datetime] = mapped_column(
         default=datetime.now, server_default=func.now()
     )
     answers: Mapped["Answer"] = relationship(back_populates="user")

@@ -25,6 +25,10 @@ class TelegramSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=ENV_PATH / ".env", extra="ignore")
 
 
+class NotificationsSettings(BaseSettings):
+    notify_after_minutes: int = 1
+
+
 class AiChatSettings(BaseSettings):
     ai_api_key: str
     ai_base_url: str
@@ -36,10 +40,12 @@ class Settings(BaseSettings):
     database: DatabaseSettings
     telegram: TelegramSettings
     ai: AiChatSettings()
+    notifications: NotificationsSettings
 
 
 settings = Settings(
     database=DatabaseSettings(),
     telegram=TelegramSettings(),
     ai=AiChatSettings(),
+    notifications=NotificationsSettings()
 )
