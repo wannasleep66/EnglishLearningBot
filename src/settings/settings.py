@@ -25,13 +25,21 @@ class TelegramSettings(BaseSettings):
     model_config = SettingsConfigDict(env_file=ENV_PATH / ".env", extra="ignore")
 
 
-class GigaChatSettings(BaseSettings):
-    access_token: str = "123"
+class AiChatSettings(BaseSettings):
+    ai_api_key: str
+    ai_base_url: str
+
+    model_config = SettingsConfigDict(env_file=ENV_PATH / ".env", extra="ignore")
 
 
 class Settings(BaseSettings):
     database: DatabaseSettings
     telegram: TelegramSettings
+    ai: AiChatSettings()
 
 
-settings = Settings(database=DatabaseSettings(), telegram=TelegramSettings())
+settings = Settings(
+    database=DatabaseSettings(),
+    telegram=TelegramSettings(),
+    ai=AiChatSettings(),
+)

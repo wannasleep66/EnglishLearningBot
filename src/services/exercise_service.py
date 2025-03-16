@@ -6,8 +6,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.models import Topic, Answer
 from schemas.answer import AnswerCreateSchema
-from schemas.task import TaskSchema, TaskType
+from schemas.task import TaskSchema, TaskType, TaskCreateSchema
 from schemas.topic import TopicSchema
+from services import gigachat_service
 
 
 async def get_topics(session: AsyncSession) -> list[TopicSchema]:
@@ -28,8 +29,14 @@ async def get_task(
     topic = await get_topic(topic_id, session)
     if not topic:
         return None
-    ## todo тут должен быть кол к сервису для работы с ии из которого мы получим задание
-    return TaskSchema(task="Какое то задание", type=task_type, topic=topic)
+
+    task = await gigachat_service.get_english_exercise(
+        TaskCreateSchema(topic=topic, type=task_type)
+    )
+    if not task:
+        return None
+
+    return task
 
 
 async def check_answer(
