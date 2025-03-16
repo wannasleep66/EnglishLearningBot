@@ -4,16 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="Изменение структуры">
-      <change afterPath="$PROJECT_DIR$/src/database/seeds.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/schemas/answer.py" afterDir="false" />
+    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="Добавлены обработчики для выбора и ответа на статичное задание с сохранинем результата в бд">
+      <change afterPath="$PROJECT_DIR$/src/telegram/base/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/base/constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/telegram/base/handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/migrations/versions/24accec9c870_added_answers_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/migrations/versions/24accec9c870_added_answers_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/migrations/versions/4af1fa1ad7a9_added_users_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/migrations/versions/4af1fa1ad7a9_added_users_table.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/migrations/versions/aa86d62acd2b_added_topics_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/migrations/versions/aa86d62acd2b_added_topics_table.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/schemas/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/task.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/topic.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/topic.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/exercise_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/exercise_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/gigachat_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/gigachat_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/common.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/telegram/tasks/handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/tasks/handler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/telegram/tasks/keyboards.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/tasks/keyboards.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/telegram/tasks/state.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/tasks/state.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/user/handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/user/handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/user/keyboards.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/user/keyboards.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +72,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Projects/EnglishBot/src/telegram/tasks",
-    "settings.editor.selected.configurable": "com.jetbrains.python.black.configuration.BlackFormatterConfigurable"
+    "last_opened_file_path": "D:/Projects/EnglishBot/src/telegram/base/constants.py",
+    "settings.editor.selected.configurable": "configurable.group.appearance"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -73,7 +82,7 @@
       <recent name="D:\Projects\EnglishBot\src\telegram\tasks" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.seeds">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EnglishBot" />
       <option name="ENV_FILES" value="" />
@@ -202,7 +211,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742046403280</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Добавлены обработчики для выбора и ответа на статичное задание с сохранинем результата в бд">
+      <option name="closed" value="true" />
+      <created>1742078912076</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1742078912076</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -224,6 +241,7 @@
     <MESSAGE value="deleted env file from git" />
     <MESSAGE value="Добавлены миграции для таблиц Тем(Topic) и Ответов(Answer)" />
     <MESSAGE value="Изменение структуры" />
-    <option name="LAST_COMMIT_MESSAGE" value="Изменение структуры" />
+    <MESSAGE value="Добавлены обработчики для выбора и ответа на статичное задание с сохранинем результата в бд" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены обработчики для выбора и ответа на статичное задание с сохранинем результата в бд" />
   </component>
 </project>

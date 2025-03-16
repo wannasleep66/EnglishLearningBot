@@ -1,4 +1,5 @@
 from enum import StrEnum, auto
+from typing import Type
 
 from pydantic import BaseModel
 
@@ -13,7 +14,7 @@ class TaskType(StrEnum):
 
 class TaskCreateSchema(BaseModel):
     topic: TopicSchema
-    type: TaskType
+    type: TaskType | Type[TaskType]
 
 
 class TaskSchema(BaseModel):

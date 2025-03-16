@@ -6,7 +6,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from database.session import transaction
 from schemas.user import UserSchema
 from src.services import user_service
-from telegram.common import KeyboardCommands
+from telegram.base.constants import KeyboardCommands
 from telegram.user.keyboards import main_keyboard
 
 user_router = Router()
@@ -14,7 +14,7 @@ user_router = Router()
 
 @user_router.message(CommandStart())
 @transaction
-async def start_command(message: Message, session: AsyncSession):
+async def start_command(message: Message, session: AsyncSession) -> None:
     user = await user_service.authenticate(
         UserSchema(
             id=message.from_user.id,
@@ -29,5 +29,5 @@ async def start_command(message: Message, session: AsyncSession):
 
 @user_router.message(F.text == KeyboardCommands.profile)
 @transaction
-async def show_profile(message: Message, session: AsyncSession):
+async def show_profile(message: Message, session: AsyncSession) -> None:
     await message.answer("Тут будет твой профиль работяга")

@@ -1,7 +1,7 @@
 from aiogram.types import ReplyKeyboardMarkup
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
-from telegram.common import KeyboardCommands
+from telegram.base.constants import KeyboardCommands
 
 
 def main_keyboard() -> ReplyKeyboardMarkup:

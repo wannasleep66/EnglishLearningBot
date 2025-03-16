@@ -5,3 +5,9 @@ from dataclasses import dataclass
 class KeyboardCommands:
     profile = "Профиль"
     tasks = "Упражнения"
+
+
+@dataclass(frozen=True)
+class CallBacks:
+    back_to_topic_selection = "to_topics"
+    back_to_types_selection = "to_types"
