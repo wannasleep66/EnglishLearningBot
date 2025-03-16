@@ -94,7 +94,7 @@ async def handle_user_answer(
         session=session,
     )
 
-    if not is_correct:
+    if is_correct:
         await state.set_state(ExerciseState.type_selection)
         await message.answer("Правильно, вы молодец!")
         return

@@ -1,32 +1,51 @@
-from openai import AsyncOpenAI
-from aiohttp import ClientSession
+from langchain_core.messages import SystemMessage, HumanMessage
+from langchain_gigachat.chat_models import GigaChat
+
 from src.settings.settings import settings
 from schemas.task import TaskCreateSchema, TaskSchema
 
 
-api = AsyncOpenAI(api_key=settings.ai.ai_api_key, base_url=settings.ai.ai_base_url)
+giga_chat = GigaChat(
+    credentials=settings.ai.ai_api_key,
+    verify_ssl_certs=False,
+)
 
 
 async def get_english_exercise(task_data: TaskCreateSchema) -> TaskSchema | None:
-    system_prompt = "Ты агент учитель английского языка для студентов"
-    user_prompt = f"Дай задание по теме:  {task_data.topic.name},  с типом задания: {task_data.type.value}, дай пояснения как отвечать на задание, чтобы когда я прислал тебе ответ ты мог легко сказать правильно или нет"
-
-    response = await api.chat.completions.create(
-        model="mistralai/Mistral-7B-Instruct-v0.2",
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_prompt},
-        ],
-        temperature=0.7,
-        max_tokens=100,
+    system_message = SystemMessage(
+        content="Ты учитель английского языка для студентов."
     )
 
-    if len(response.choices) > 0:
-        task_text = response.choices[0].message.content.strip()
+    human_message = HumanMessage(
+        content=f"Предложи небольшое задание по английскому языку на тему '{task_data.topic.name}', "
+        f"тип задания: {task_data.type}. Задача должна быть короткой, должны быть предложены варианты ответа. "
+        f"сам ответ давать не нужно"
+    )
+
+    messages = [system_message, human_message]
+    response = await giga_chat.ainvoke(messages)
+
+    if response and hasattr(response, "content"):
+        task_text = response.content.strip()
         return TaskSchema(topic=task_data.topic, type=task_data.type, task=task_text)
 
     return None
 
 
-def check_answer(user_answer: str, correct_answer: str) -> bool:
-    return user_answer.strip().lower() == correct_answer.strip().lower()
+async def check_answer(user_answer: str, task: str) -> bool:
+    system_message = SystemMessage(
+        content="Ты эксперт по проверке заданий на английском языке. Твоя задача – определить, правильный ли ответ дал студент."
+    )
+    human_message = HumanMessage(
+        content=f'Текст задания: "{task}". Ответ студента: "{user_answer}". Правильный ли этот ответ? Ответь 1 словом да или нет'
+    )
+    messages = [system_message, human_message]
+
+    response = await giga_chat.ainvoke(messages)
+    if response and hasattr(response, "content"):
+        answer_content = response.content.strip().lower()
+        is_correct = any(word in answer_content for word in ["Да", "да", "Верно"])
+        print(is_correct)
+        return is_correct
+
+    return False

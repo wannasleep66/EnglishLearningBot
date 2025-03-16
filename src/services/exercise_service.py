@@ -42,9 +42,9 @@ async def get_task(
 async def check_answer(
     user_id: int, answer: str, task: TaskSchema, session: AsyncSession
 ) -> bool:
-    ## todo тут должен быть кол к сервису для работы с ии, который проверит ответ пользователя
+    is_correct = await gigachat_service.check_answer(user_answer=answer, task=task.task)
     answer_from_giga = AnswerCreateSchema(
-        task=task.task, user_id=user_id, topic_id=task.topic.id, is_correct=False
+        task=task.task, user_id=user_id, topic_id=task.topic.id, is_correct=is_correct
     )
     new_answer = Answer(**answer_from_giga.model_dump())
 

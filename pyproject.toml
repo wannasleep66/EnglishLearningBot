@@ -6,7 +6,7 @@ authors = [
     {name = "Daniil",email = "daniil.karpenk0@yandex.ru"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13, <4.0"
 dependencies = [
     "alembic (>=1.15.1,<2.0.0)",
     "sqlalchemy (>=2.0.39,<3.0.0)",
@@ -15,7 +15,7 @@ dependencies = [
     "pydantic-settings (>=2.8.1,<3.0.0)",
     "black (>=25.1.0,<26.0.0)",
     "pydantic (>=2.10.6,<3.0.0)",
-    "openai (>=1.66.3,<2.0.0)"
+    "langchain-gigachat (>=0.3.8,<0.4.0)",
 ]
 
 
