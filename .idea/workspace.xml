@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="Добавлеа возможность возвращения к списками тем">
+    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="Перенос на гигачат и добавлена функция для проверки ответов с помощью него">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/exercise_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/exercise_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/gigachat_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/gigachat_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/telegram/tasks/handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/tasks/handler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742129434787</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Перенос на гигачат и добавлена функция для проверки ответов с помощью него">
+      <option name="closed" value="true" />
+      <created>1742138093207</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1742138093208</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -248,6 +251,7 @@
     <MESSAGE value="Добавлены обработчики для выбора и ответа на статичное задание с сохранинем результата в бд" />
     <MESSAGE value="Добавлена работы с ai" />
     <MESSAGE value="Добавлеа возможность возвращения к списками тем" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлеа возможность возвращения к списками тем" />
+    <MESSAGE value="Перенос на гигачат и добавлена функция для проверки ответов с помощью него" />
+    <option name="LAST_COMMIT_MESSAGE" value="Перенос на гигачат и добавлена функция для проверки ответов с помощью него" />
   </component>
 </project>
