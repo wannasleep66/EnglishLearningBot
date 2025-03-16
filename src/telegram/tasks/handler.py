@@ -8,7 +8,7 @@ from schemas.task import TaskType, TaskSchema
 from telegram.base.constants import KeyboardCommands, CallBacks
 from src.services import exercise_service
 from telegram.tasks.keyboards import (
-    topics_inline_keyboard,
+    topics_selection,
     task_types_inline_keyboard,
 )
 from telegram.tasks.state import ExerciseState
@@ -24,7 +24,7 @@ async def get_topics_to_select(
     topics = await exercise_service.get_topics(session)
     await state.set_state(ExerciseState.topic_selection)
     await message.answer(
-        text="Список доступных тем", reply_markup=topics_inline_keyboard(topics)
+        text="Список доступных тем", reply_markup=topics_selection(topics)
     )
 
 
@@ -112,5 +112,5 @@ async def return_to_topic_selection(
     topics = await exercise_service.get_topics(session)
     await state.set_state(ExerciseState.topic_selection)
     await call.message.edit_text(
-        text="Список доступных тем", reply_markup=topics_inline_keyboard(topics)
+        text="Список доступных тем", reply_markup=topics_selection(topics)
     )

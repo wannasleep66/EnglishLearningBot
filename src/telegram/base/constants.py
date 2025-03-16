@@ -11,3 +11,6 @@ class KeyboardCommands:
 class CallBacks:
     back_to_topic_selection = "to_topics"
     back_to_types_selection = "to_types"
+
+    topic_progress = "topic_progress"
+    back_to_profile = "to_profile"

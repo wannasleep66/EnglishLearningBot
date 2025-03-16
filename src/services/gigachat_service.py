@@ -45,7 +45,6 @@ async def check_answer(user_answer: str, task: str) -> bool:
     if response and hasattr(response, "content"):
         answer_content = response.content.strip().lower()
         is_correct = any(word in answer_content for word in ["Да", "да", "Верно"])
-        print(is_correct)
         return is_correct
 
     return False

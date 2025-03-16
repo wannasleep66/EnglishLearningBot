@@ -1,5 +1,4 @@
 import asyncio
-import logging
 
 from sqlalchemy import delete
 from sqlalchemy.exc import SQLAlchemyError
