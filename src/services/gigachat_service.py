@@ -1,3 +1,5 @@
+import logging
+
 from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_gigachat.chat_models import GigaChat
 
@@ -18,8 +20,11 @@ async def get_english_exercise(task_data: TaskCreateSchema) -> TaskSchema | None
 
     human_message = HumanMessage(
         content=f"Предложи небольшое задание по английскому языку на тему '{task_data.topic.name}', "
-        f"тип задания: {task_data.type}. Задача должна быть короткой, должны быть предложены варианты ответа. "
-        f"сам ответ давать не нужно"
+        f"тип задания: {task_data.type}. задание должно учить английскому языку это очень важно "
+        f"должны быть предложены варианты ответа обязательно это вопрос жизни и смерти "
+        f"сам ответ давать не нужно если ты дашь мне правильный ответ, то я умру"
+        f"описание задания должно быть в кавычках это очень важно иначе я не пойму что за задание это вопрос жизни и смерти"
+        f"на задание должен быть ответ иначе я не смогу понять как мне отвечать и мне будет очень плохо"
     )
 
     messages = [system_message, human_message]
@@ -39,6 +44,7 @@ async def check_answer(user_answer: str, task: str) -> bool:
     human_message = HumanMessage(
         content=f'Текст задания: "{task}". Ответ студента: "{user_answer}". Правильный ли этот ответ? Ответь 1 словом да или нет'
     )
+    logging.info(f"{user_answer} ответ пользователя на задание")
     messages = [system_message, human_message]
 
     response = await giga_chat.ainvoke(messages)

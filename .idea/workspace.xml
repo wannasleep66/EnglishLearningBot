@@ -4,8 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="Перенос на гигачат и добавлена функция для проверки ответов с помощью него">
+    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="Добавлены уведомления и поправлена миграция с активностью пользователя">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/seeds.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/seeds.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/gigachat_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/gigachat_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/tasks/handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/tasks/handler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,14 +59,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.Dockerfile.executor": "Run",
+    "Docker.docker-compose.yaml.app: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml.postgres: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
     "Python.main.executor": "Run",
     "Python.seeds.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "D:/Projects/EnglishBot/src/telegram/base/constants.py",
-    "settings.editor.selected.configurable": "configurable.group.appearance"
+    "settings.editor.selected.configurable": "configurable.group.build"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -65,7 +78,7 @@
       <recent name="D:\Projects\EnglishBot\src\telegram\tasks" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EnglishBot" />
       <option name="ENV_FILES" value="" />
@@ -110,19 +123,38 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="sourceFilePath" value="Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="envFilePath" value="" />
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
           <option name="services">
             <list>
-              <option value="postgres" />
+              <option value="app" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -132,9 +164,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Docker.Dockerfile" />
+        <item itemvalue="Docker.docker-compose.yaml.app: Compose Deployment" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.seeds" />
-        <item itemvalue="Docker.docker-compose.yaml.postgres: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -226,7 +260,39 @@
       <option name="project" value="LOCAL" />
       <updated>1742138093208</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Добавлен модуль для сервиса уведомлений">
+      <option name="closed" value="true" />
+      <created>1742142275922</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1742142275922</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Добавлено отображения прогресса пользователя">
+      <option name="closed" value="true" />
+      <created>1742165011956</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1742165011956</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Добавлена миграция с добавлением поля последней активности для уведомлений">
+      <option name="closed" value="true" />
+      <created>1742165046517</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1742165046517</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Добавлены уведомления и поправлена миграция с активностью пользователя">
+      <option name="closed" value="true" />
+      <created>1742169394452</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1742169394452</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -252,6 +318,10 @@
     <MESSAGE value="Добавлена работы с ai" />
     <MESSAGE value="Добавлеа возможность возвращения к списками тем" />
     <MESSAGE value="Перенос на гигачат и добавлена функция для проверки ответов с помощью него" />
-    <option name="LAST_COMMIT_MESSAGE" value="Перенос на гигачат и добавлена функция для проверки ответов с помощью него" />
+    <MESSAGE value="Добавлен модуль для сервиса уведомлений" />
+    <MESSAGE value="Добавлено отображения прогресса пользователя" />
+    <MESSAGE value="Добавлена миграция с добавлением поля последней активности для уведомлений" />
+    <MESSAGE value="Добавлены уведомления и поправлена миграция с активностью пользователя" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены уведомления и поправлена миграция с активностью пользователя" />
   </component>
 </project>

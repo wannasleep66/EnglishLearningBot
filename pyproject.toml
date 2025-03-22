@@ -6,7 +6,7 @@ authors = [
     {name = "Daniil",email = "daniil.karpenk0@yandex.ru"}
 ]
 readme = "README.md"
-requires-python = ">=3.13, <4.0"
+requires-python = ">=3.11, <4.0"
 dependencies = [
     "alembic (>=1.15.1,<2.0.0)",
     "sqlalchemy (>=2.0.39,<3.0.0)",

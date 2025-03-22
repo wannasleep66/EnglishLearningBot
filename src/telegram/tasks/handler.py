@@ -50,7 +50,10 @@ async def handle_topic_selection(
     )
 
 
-@tasks_router.callback_query(F.data.startswith("type-"), ExerciseState.type_selection)
+@tasks_router.callback_query(
+    F.data.startswith("type-"),
+    ExerciseState.type_selection,
+)
 @transaction
 async def handle_type_selection(
     call: CallbackQuery, state: FSMContext, session: AsyncSession
