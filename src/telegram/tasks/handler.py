@@ -10,6 +10,8 @@ from src.services import exercise_service
 from telegram.tasks.keyboards import (
     topics_selection,
     task_types_inline_keyboard,
+    regenerate_task_button,
+    cancel_task_button,
 )
 from telegram.tasks.state import ExerciseState
 
@@ -37,7 +39,9 @@ async def handle_topic_selection(
 
     topic_id = int(call.data.split("-")[1])
     if not topic_id:
-        await call.message.answer("Прозошла ошибка при выборе темы, попробуйте еще раз")
+        await call.message.answer(
+            "Произошла ошибка при выборе темы, попробуйте еще раз"
+        )
         await state.clear()
         return
 
@@ -62,7 +66,7 @@ async def handle_type_selection(
     task_type = TaskType[(call.data.split("-")[1])]
     if not task_type:
         await call.message.answer(
-            "Прозошла ошибка при выборе типа задачи, попробуйте еще раз"
+            "Произошла ошибка при выборе типа задачи, попробуйте еще раз"
         )
         await state.clear()
         return
@@ -70,12 +74,12 @@ async def handle_type_selection(
     topic_id = await state.get_value("topic_id")
     task = await exercise_service.get_task(topic_id, task_type, session)
     if not task:
-        await call.message.answer("Прозошла ошибка при генерации задачи")
+        await call.message.answer("Произошла ошибка при генерации задачи")
         return
 
     await state.set_state(ExerciseState.verify)
     await state.update_data(task=task.model_dump())
-    await call.message.answer(text=task.task)
+    await call.message.answer(text=task.task, reply_markup=regenerate_task_button())
 
 
 @tasks_router.message(F.text, ExerciseState.verify)
@@ -103,7 +107,8 @@ async def handle_user_answer(
         return
 
     await message.answer(
-        "Неверно, можете попробовать еще раз или попробовать в следующий раз!"
+        "Неверно, можете попробовать еще раз или попробовать в следующий раз!",
+        reply_markup=cancel_task_button(),
     )
 
 
@@ -117,3 +122,37 @@ async def return_to_topic_selection(
     await call.message.edit_text(
         text="Список доступных тем", reply_markup=topics_selection(topics)
     )
+
+
+@tasks_router.callback_query(F.data == CallBacks.regenerate_task)
+@transaction
+async def regenerate_task(
+    call: CallbackQuery, state: FSMContext, session: AsyncSession
+) -> None:
+    await call.answer()
+    task_dict = await state.get_value("task")
+    if not task_dict:
+        await call.answer(text="Ошибка, не удалось перегенировать задание")
+        return
+
+    try:
+        task_data = TaskSchema(**task_dict)
+    except ValueError:
+        await call.answer(text="Ошибка, не удалось перегенировать задание")
+        return
+
+    task = await exercise_service.get_task(task_data.topic.id, task_data.type, session)
+    if not task:
+        await call.message.answer("Произошла ошибка при генерации задачи")
+        return
+
+    await state.update_data(task=task.model_dump())
+    await state.set_state(ExerciseState.verify)
+    await call.message.edit_text(text=task.task, reply_markup=regenerate_task_button())
+
+
+@tasks_router.callback_query(F.data == CallBacks.cancel_task, ExerciseState.verify)
+async def cancel_task(call: CallbackQuery, state: FSMContext) -> None:
+    await call.answer()
+    await state.set_state(ExerciseState.type_selection)
+    await call.message.delete()

@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="Добавлены уведомления и поправлена миграция с активностью пользователя">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
+    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="Добавлена контейнеризация проекта">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/seeds.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/seeds.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/gigachat_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/gigachat_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/settings/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/base/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/base/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/telegram/tasks/handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/tasks/handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/tasks/keyboards.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/tasks/keyboards.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +39,9 @@
     &quot;accountId&quot;: &quot;20d332db-b6c0-44ad-9757-1dd986c5e63e&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -57,21 +54,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.Dockerfile.executor": "Run",
-    "Docker.docker-compose.yaml.app: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yaml.postgres: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.seeds.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Projects/EnglishBot/src/telegram/base/constants.py",
-    "settings.editor.selected.configurable": "configurable.group.build"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yaml.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yaml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.seeds.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/EnglishBot/src/telegram/base/constants.py&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Projects\EnglishBot\src\telegram\user" />
@@ -138,7 +135,9 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile" />
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -292,7 +291,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742169394452</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Добавлена контейнеризация проекта">
+      <option name="closed" value="true" />
+      <created>1742653000575</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1742653000575</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -322,6 +329,7 @@
     <MESSAGE value="Добавлено отображения прогресса пользователя" />
     <MESSAGE value="Добавлена миграция с добавлением поля последней активности для уведомлений" />
     <MESSAGE value="Добавлены уведомления и поправлена миграция с активностью пользователя" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены уведомления и поправлена миграция с активностью пользователя" />
+    <MESSAGE value="Добавлена контейнеризация проекта" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлена контейнеризация проекта" />
   </component>
 </project>
