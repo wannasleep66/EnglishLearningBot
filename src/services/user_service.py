@@ -38,11 +38,15 @@ async def get_inactive_users(session: AsyncSession) -> list[UserSchema]:
     return list(UserSchema.model_validate(user) for user in inactive_users)
 
 
-async def update_user_activity(user_id: int, session: AsyncSession) -> None:
-    query = select(User).filter(User.id == user_id)
+async def update_user_activity(user_id: str, session: AsyncSession) -> None:
+    query = select(User).filter(
+        and_(User.id == user_id, User.has_notifications == True)
+    )
     user_to_update = await session.scalar(query)
-    if user_to_update:
-        user_to_update.last_activity = datetime.now()
+    if not user_to_update:
+        return
+
+    user_to_update.last_activity = datetime.now()
 
     try:
         await session.commit()
@@ -52,7 +56,26 @@ async def update_user_activity(user_id: int, session: AsyncSession) -> None:
         raise
 
 
-async def get_user_progress(user_id: int, session: AsyncSession):
+async def switch_user_notifications(
+    user_id: str, session: AsyncSession
+) -> UserSchema | None:
+    user_to_update = await session.scalar(select(User).filter(User.id == user_id))
+    if not user_to_update:
+        return
+
+    user_to_update.has_notifications = not user_to_update.has_notifications
+
+    try:
+        await session.commit()
+        await session.refresh(user_to_update)
+    except SQLAlchemyError:
+        await session.rollback()
+        raise
+
+    return UserSchema.model_validate(user_to_update)
+
+
+async def get_user_progress(user_id: str, session: AsyncSession):
     topic_stats_query = (
         select(
             Answer.user_id,
@@ -78,18 +101,19 @@ async def get_user_progress(user_id: int, session: AsyncSession):
         select(
             User.id,
             User.username,
-            func.sum(
-                topic_stats_query.c.total_answers,
-            ).label("total_answers"),
-            func.sum(topic_stats_query.c.correct_answers).label(
+            User.has_notifications,
+            func.coalesce(func.sum(topic_stats_query.c.total_answers), 0).label(
+                "total_answers"
+            ),
+            func.coalesce(func.sum(topic_stats_query.c.correct_answers), 0).label(
                 "total_correct_answers"
             ),
-            func.sum(topic_stats_query.c.incorrect_answers).label(
+            func.coalesce(func.sum(topic_stats_query.c.incorrect_answers), 0).label(
                 "total_incorrect_answers"
             ),
             best_topic_query.scalar_subquery().label("best_topic"),
         )
-        .join(topic_stats_query, User.id == topic_stats_query.c.user_id)
+        .outerjoin(topic_stats_query, User.id == topic_stats_query.c.user_id)
         .filter(User.id == user_id)
         .group_by(User.id)
     )
@@ -99,7 +123,7 @@ async def get_user_progress(user_id: int, session: AsyncSession):
     return UserProgressSchema.model_validate(row)
 
 
-async def get_user_topic_progres(user_id: int, topic_id: int, session: AsyncSession):
+async def get_user_topic_progres(user_id: str, topic_id: int, session: AsyncSession):
     topic_stats_query = (
         select(
             Answer.user_id,
@@ -117,10 +141,10 @@ async def get_user_topic_progres(user_id: int, topic_id: int, session: AsyncSess
     row = result.mappings().first()
     return (
         UserTopicProgressSchema(
-            topic=TopicSchema.model_validate(row.get("Topic")),
-            total_answers=row.get("total_answers"),
-            total_correct_answers=row.get("correct_answers"),
-            total_incorrect_answers=row.get("incorrect_answers"),
+            topic=TopicSchema.model_validate(row.get("Topic", "")),
+            total_answers=row.get("total_answers", 0),
+            total_correct_answers=row.get("correct_answers", 0),
+            total_incorrect_answers=row.get("incorrect_answers", 0),
         )
         if row
         else None

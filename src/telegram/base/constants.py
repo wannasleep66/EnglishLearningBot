@@ -15,4 +15,5 @@ class CallBacks:
     cancel_task = "cancel_task"
 
     topic_progress = "topic_progress"
+    notifications_switch = "notifications"
     back_to_profile = "to_profile"

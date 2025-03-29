@@ -19,8 +19,8 @@ async def get_english_exercise(task_data: TaskCreateSchema) -> TaskSchema | None
     )
 
     human_message = HumanMessage(
-        content=f"Предложи небольшое задание по английскому языку на тему '{task_data.topic.name}', "
-        f"тип задания: {task_data.type}. задание должно учить английскому языку это очень важно "
+        content=f"Предложи небольшое задание по английскому языку на тему '{task_data.topic.name}',"
+        f"задание должно учить английскому языку это очень важно "
         f"должны быть предложены варианты ответа обязательно это вопрос жизни и смерти "
         f"сам ответ давать не нужно если ты дашь мне правильный ответ, то я умру"
         f"описание задания должно быть в кавычках это очень важно иначе я не пойму что за задание это вопрос жизни и смерти"
@@ -32,7 +32,7 @@ async def get_english_exercise(task_data: TaskCreateSchema) -> TaskSchema | None
 
     if response and hasattr(response, "content"):
         task_text = response.content.strip()
-        return TaskSchema(topic=task_data.topic, type=task_data.type, task=task_text)
+        return TaskSchema(topic=task_data.topic, task=task_text)
 
     return None
 

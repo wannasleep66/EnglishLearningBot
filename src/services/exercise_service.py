@@ -1,12 +1,10 @@
-from typing import Type
-
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.models import Topic, Answer
 from schemas.answer import AnswerCreateSchema
-from schemas.task import TaskSchema, TaskType, TaskCreateSchema
+from schemas.task import TaskSchema, TaskCreateSchema
 from schemas.topic import TopicSchema
 from services import gigachat_service
 
@@ -23,16 +21,12 @@ async def get_topic(topic_id: int, session: AsyncSession) -> TopicSchema | None:
     return TopicSchema.model_validate(topic) if topic else None
 
 
-async def get_task(
-    topic_id: int, task_type: TaskType | Type[TaskType], session: AsyncSession
-) -> TaskSchema | None:
+async def get_task(topic_id: int, session: AsyncSession) -> TaskSchema | None:
     topic = await get_topic(topic_id, session)
     if not topic:
         return None
 
-    task = await gigachat_service.get_english_exercise(
-        TaskCreateSchema(topic=topic, type=task_type)
-    )
+    task = await gigachat_service.get_english_exercise(TaskCreateSchema(topic=topic))
     if not task:
         return None
 
@@ -40,7 +34,7 @@ async def get_task(
 
 
 async def check_answer(
-    user_id: int, answer: str, task: TaskSchema, session: AsyncSession
+    user_id: str, answer: str, task: TaskSchema, session: AsyncSession
 ) -> bool:
     is_correct = await gigachat_service.check_answer(user_answer=answer, task=task.task)
     answer_from_giga = AnswerCreateSchema(

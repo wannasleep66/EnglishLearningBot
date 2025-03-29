@@ -12,7 +12,7 @@ class AnswerSchema(BaseModel):
 
 
 class AnswerCreateSchema(BaseModel):
-    user_id: int
+    user_id: str
     topic_id: int
     task: str
     is_correct: bool

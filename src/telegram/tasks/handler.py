@@ -4,14 +4,14 @@ from aiogram.types import Message, CallbackQuery
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.session import transaction
-from schemas.task import TaskType, TaskSchema
+from schemas.task import TaskSchema
 from telegram.base.constants import KeyboardCommands, CallBacks
 from src.services import exercise_service
 from telegram.tasks.keyboards import (
     topics_selection,
-    task_types_inline_keyboard,
     regenerate_task_button,
     cancel_task_button,
+    back_to_topics_button,
 )
 from telegram.tasks.state import ExerciseState
 
@@ -46,33 +46,7 @@ async def handle_topic_selection(
         return
 
     await state.update_data(topic_id=topic_id)
-    await state.set_state(ExerciseState.type_selection)
-    topic = await exercise_service.get_topic(topic_id, session)
-
-    await call.message.edit_text(
-        text=topic.description, reply_markup=task_types_inline_keyboard()
-    )
-
-
-@tasks_router.callback_query(
-    F.data.startswith("type-"),
-    ExerciseState.type_selection,
-)
-@transaction
-async def handle_type_selection(
-    call: CallbackQuery, state: FSMContext, session: AsyncSession
-) -> None:
-    await call.answer()
-    task_type = TaskType[(call.data.split("-")[1])]
-    if not task_type:
-        await call.message.answer(
-            "Произошла ошибка при выборе типа задачи, попробуйте еще раз"
-        )
-        await state.clear()
-        return
-
-    topic_id = await state.get_value("topic_id")
-    task = await exercise_service.get_task(topic_id, task_type, session)
+    task = await exercise_service.get_task(topic_id, session)
     if not task:
         await call.message.answer("Произошла ошибка при генерации задачи")
         return
@@ -95,15 +69,17 @@ async def handle_user_answer(
         return
 
     is_correct = await exercise_service.check_answer(
-        user_id=message.from_user.id,
+        user_id=str(message.from_user.id),
         answer=message.text,
         task=current_task,
         session=session,
     )
 
     if is_correct:
-        await state.set_state(ExerciseState.type_selection)
-        await message.answer("Правильно, вы молодец!")
+        await state.set_state(ExerciseState.topic_selection)
+        await message.answer(
+            "Правильно, вы молодец!", reply_markup=back_to_topics_button()
+        )
         return
 
     await message.answer(
@@ -141,7 +117,7 @@ async def regenerate_task(
         await call.answer(text="Ошибка, не удалось перегенировать задание")
         return
 
-    task = await exercise_service.get_task(task_data.topic.id, task_data.type, session)
+    task = await exercise_service.get_task(task_data.topic.id, session)
     if not task:
         await call.message.answer("Произошла ошибка при генерации задачи")
         return
@@ -154,5 +130,5 @@ async def regenerate_task(
 @tasks_router.callback_query(F.data == CallBacks.cancel_task, ExerciseState.verify)
 async def cancel_task(call: CallbackQuery, state: FSMContext) -> None:
     await call.answer()
-    await state.set_state(ExerciseState.type_selection)
+    await state.set_state(ExerciseState.topic_selection)
     await call.message.delete()

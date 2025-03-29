@@ -47,5 +47,5 @@ settings = Settings(
     database=DatabaseSettings(),
     telegram=TelegramSettings(),
     ai=AiChatSettings(),
-    notifications=NotificationsSettings()
+    notifications=NotificationsSettings(),
 )

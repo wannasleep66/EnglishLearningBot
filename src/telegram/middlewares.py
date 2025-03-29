@@ -22,7 +22,7 @@ async def activity_recorder_middleware(
         else event.callback_query.from_user.id
     )
     try:
-        await user_service.update_user_activity(user_id, session)
+        await user_service.update_user_activity(str(user_id), session)
     except SQLAlchemyError:
         logging.ERROR("Не удалось обновить активность пользователя")
 

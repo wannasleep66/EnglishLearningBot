@@ -6,7 +6,7 @@ from .base import Base
 
 class Answer(Base):
     __tablename__ = "answers"
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
     topic_id: Mapped[int] = mapped_column(ForeignKey("topics.id"))
     task: Mapped[str]
     is_correct: Mapped[bool]

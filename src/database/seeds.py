@@ -4,7 +4,7 @@ from sqlalchemy import delete
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from database.models import Topic
+from database.models import Topic, User, Answer
 from database.session import session_factory
 
 
@@ -31,14 +31,6 @@ class TopicSeeder:
                 "description": "Практика написания текстов на английском языке.",
             },
             {
-                "name": "Разговорная практика",
-                "description": "Упражнения для улучшения разговорных навыков.",
-            },
-            {
-                "name": "Прослушивание",
-                "description": "Развитие навыков восприятия на слух.",
-            },
-            {
                 "name": "Культура",
                 "description": "Изучение культурных аспектов англоговорящих стран.",
             },
@@ -59,6 +51,23 @@ class TopicSeeder:
         stmt = delete(Topic)
         try:
             await self.session.execute(stmt)
+            await self.session.commit()
+        except SQLAlchemyError:
+            await self.session.rollback()
+            raise
+
+
+class UserSeeder:
+    def __init__(self, session: AsyncSession):
+        self.session = session
+
+    async def apply(self):
+        pass
+
+    async def undo(self):
+        try:
+            await self.session.execute(delete(Answer))
+            await self.session.execute(delete(User))
             await self.session.commit()
         except SQLAlchemyError:
             await self.session.rollback()
