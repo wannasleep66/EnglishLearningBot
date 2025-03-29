@@ -30,9 +30,12 @@ async def authenticate(user_data: UserSchema, session: AsyncSession) -> UserSche
 
 async def get_inactive_users(session: AsyncSession) -> list[UserSchema]:
     query = select(User).filter(
-        User.last_activity
-        < datetime.now()
-        - timedelta(minutes=settings.notifications.notify_after_minutes)
+        and_(
+            User.last_activity
+            < datetime.now()
+            - timedelta(minutes=settings.notifications.notify_after_minutes),
+            User.has_notifications == True,
+        )
     )
     inactive_users = await session.scalars(query)
     return list(UserSchema.model_validate(user) for user in inactive_users)

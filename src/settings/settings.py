@@ -26,7 +26,7 @@ class TelegramSettings(BaseSettings):
 
 
 class NotificationsSettings(BaseSettings):
-    notify_after_minutes: int = 180
+    notify_after_minutes: int = 1
 
 
 class AiChatSettings(BaseSettings):
