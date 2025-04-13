@@ -10,8 +10,8 @@ from database.models import Topic
 class TopicSeeder:
     @staticmethod
     async def apply(session: AsyncSession):
-        topics = [
-            {
+        """
+        {
                 "name": "Глагол to be в настоящем простом времени (Present Simple) ",
                 "description": "",
             },
@@ -27,6 +27,16 @@ class TopicSeeder:
                 "name": "Настоящее простое время (Present Simple) в утвердительных предложениях",
                 "description": "",
             },
+        """
+        topics = [
+            {
+                "name": "Present Simple (отрицательные и вопросительные предложения)",
+                "description": "",
+            },
+            {"name": "to have (Present Simple)", "description": ""},
+            {"name": "some / any ", "description": ""},
+            {"name": "использование наречий too / enough", "description": ""},
+            {"name": "there is / there are", "description": ""},
         ]
 
         topic_models = [

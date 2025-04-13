@@ -23,19 +23,21 @@ async def seed() -> None:
         # await TopicSeeder.apply(session)
         # await TaskTypeSeeder.apply(session)
         # await TaskExampleSeeder.undo(session)
-        # await TaskExampleSeeder.apply(session)
+        await TaskExampleSeeder.apply(session)
         print(
-            list(
+            *list(
                 {"id": topic.id, "name": topic.name}
                 for topic in await session.scalars(select(Topic))
-            )
+            ),
+            sep="\n\n",
         )
-        print(
-            list(
-                {"id": task_type.id, "name": task_type.name}
-                for task_type in await session.scalars(select(TaskType))
-            )
-        )
+        # print(
+        #     *list(
+        #         {"id": task_type.id, "name": task_type.name}
+        #         for task_type in await session.scalars(select(TaskType))
+        #     ),
+        #     sep="\n\n",
+        # )
         await session.close()
 
 
