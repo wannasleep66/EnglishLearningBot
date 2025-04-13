@@ -15,16 +15,14 @@ giga_chat = GigaChat(
 
 async def get_english_exercise(task_data: TaskCreateSchema) -> TaskSchema | None:
     system_message = SystemMessage(
-        content="Ты учитель английского языка для студентов."
+        content="Ты учитель английского языка для студентов, который создает упражнения"
     )
-
     human_message = HumanMessage(
-        content=f"Предложи небольшое задание по английскому языку на тему '{task_data.topic.name}',"
-        f"задание должно учить английскому языку это очень важно "
-        f"должны быть предложены варианты ответа обязательно это вопрос жизни и смерти "
-        f"сам ответ давать не нужно если ты дашь мне правильный ответ, то я умру"
-        f"описание задания должно быть в кавычках это очень важно иначе я не пойму что за задание это вопрос жизни и смерти"
-        f"на задание должен быть ответ иначе я не смогу понять как мне отвечать и мне будет очень плохо"
+        content=f"Сгенерируй упражнение по английскому языку на тему: {task_data.topic}"
+        f"Тип задания: {task_data.task_type}"
+        f"Пример задания: {task_data.example}"
+        f"Задание должно отличаться от примера"
+        f"Очень важно: не присылай ответ на это упражнение - это запрещено"
     )
 
     messages = [system_message, human_message]
@@ -32,7 +30,9 @@ async def get_english_exercise(task_data: TaskCreateSchema) -> TaskSchema | None
 
     if response and hasattr(response, "content"):
         task_text = response.content.strip()
-        return TaskSchema(topic=task_data.topic, task=task_text)
+        return TaskSchema(
+            topic=task_data.topic, task=task_text, task_type=task_data.task_type
+        )
 
     return None
 

@@ -5,10 +5,10 @@ from sqlalchemy import select, func, case, desc, and_
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from settings.settings import settings
 from database.models import User, Answer, Topic
 from schemas.topic import TopicSchema
 from schemas.user import UserSchema, UserProgressSchema, UserTopicProgressSchema
+from settings.settings import settings
 
 
 async def authenticate(user_data: UserSchema, session: AsyncSession) -> UserSchema:

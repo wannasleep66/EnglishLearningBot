@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="Добавлены возможность отключать уведомления, убран выбор типа задания изменен сид с темами для заданий, пользовательский айди теперь строкового типа">
+    <list default="true" id="98fdef5a-7489-4d24-a51a-b5a4ccbcf02d" name="Changes" comment="Создана миграция для добавления новой колонки для флага уведомлений">
+      <change afterPath="$PROJECT_DIR$/src/database/migrations/versions/080a7b0047a0_added_unique_constraint_on_name_in_.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/migrations/versions/28dca2e81e0b_added_cascade_delete_in_answer_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/migrations/versions/3e3268732f5a_added_task_types_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/migrations/versions/a959d440fbe9_added_unique_constraint_on_name_in_task_.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/migrations/versions/b6e9f6d53309_added_task_example_table.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/models/task_example.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/models/task_type.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/seeds/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/seeds/task_example_seed.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/seeds/task_type_seed.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/seeds/topic_seed.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/seeds/user_seed.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/schemas/task_type.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/models/answer.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/answer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/models/topic.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/models/topic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/seeds.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/task.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/task.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/exercise_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/exercise_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/gigachat_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/gigachat_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/services/user_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/user_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/settings/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/settings/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/tasks/handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/tasks/handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/tasks/keyboards.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/tasks/keyboards.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/telegram/tasks/state.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/telegram/tasks/state.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +43,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
+        <option value="Setup Script" />
         <option value="Python Script" />
       </list>
     </option>
@@ -52,28 +78,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.app: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.seeds.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Projects/EnglishBot/src/telegram/base/constants.py&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.Dockerfile.executor": "Run",
+    "Docker.docker-compose.yaml.app: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.postgres: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
+    "Python.__init__.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.seeds.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/Projects/CarRentProject",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "configurable.group.build"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Projects\EnglishBot\src\telegram\user" />
       <recent name="D:\Projects\EnglishBot\src\telegram\tasks" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.__init__">
+    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="EnglishBot" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/database/seeds" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/database/seeds/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="EnglishBot" />
       <option name="ENV_FILES" value="" />
@@ -146,33 +196,20 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="app" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yaml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.__init__" />
         <item itemvalue="Python.seeds" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
         <item itemvalue="Docker.Dockerfile" />
-        <item itemvalue="Docker.docker-compose.yaml.app: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-495700d161d3-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.220" />
+        <option value="bundled-python-sdk-4f4e415b4190-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.26053.29" />
       </set>
     </attachedChunks>
   </component>
@@ -313,7 +350,23 @@
       <option name="project" value="LOCAL" />
       <updated>1743282980038</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Фикс: бот присылал уведомления, когда они были отключены у пользователя">
+      <option name="closed" value="true" />
+      <created>1743283732698</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1743283732698</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Создана миграция для добавления новой колонки для флага уведомлений">
+      <option name="closed" value="true" />
+      <created>1744480275755</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1744480275755</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -346,6 +399,8 @@
     <MESSAGE value="Добавлена контейнеризация проекта" />
     <MESSAGE value="Добавлена повторная генерация задания, и возможность прекращения ответа на задание" />
     <MESSAGE value="Добавлены возможность отключать уведомления, убран выбор типа задания изменен сид с темами для заданий, пользовательский айди теперь строкового типа" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены возможность отключать уведомления, убран выбор типа задания изменен сид с темами для заданий, пользовательский айди теперь строкового типа" />
+    <MESSAGE value="Фикс: бот присылал уведомления, когда они были отключены у пользователя" />
+    <MESSAGE value="Создана миграция для добавления новой колонки для флага уведомлений" />
+    <option name="LAST_COMMIT_MESSAGE" value="Создана миграция для добавления новой колонки для флага уведомлений" />
   </component>
 </project>
