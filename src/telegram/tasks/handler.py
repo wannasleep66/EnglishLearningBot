@@ -11,7 +11,6 @@ from telegram.tasks.keyboards import (
     topics_selection,
     regenerate_task_button,
     cancel_task_button,
-    back_to_topics_button,
     types_selection,
     back_to_types_button,
 )
